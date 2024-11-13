@@ -8,6 +8,8 @@ import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ClienteVIEW extends JInternalFrame {
 
@@ -18,6 +20,8 @@ public class ClienteVIEW extends JInternalFrame {
 	private JTextField cep;
 	private JTextField rua;
 	private JTextField textField_5;
+	private JTextField pesqNome;
+	private JTable TabelaCliente;
 
 	/**
 	 * Launch the application.
@@ -40,7 +44,7 @@ public class ClienteVIEW extends JInternalFrame {
 	 */
 	public ClienteVIEW() {
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 22));
-		setBounds(100, 100, 492, 287);
+		setBounds(100, 100, 749, 329);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Cliente");
@@ -57,7 +61,7 @@ public class ClienteVIEW extends JInternalFrame {
 		panel.add(lblNewLabel_1);
 		
 		nome = new JTextField();
-		nome.setBounds(48, 8, 301, 20);
+		nome.setBounds(56, 8, 240, 20);
 		panel.add(nome);
 		nome.setColumns(10);
 		
@@ -66,7 +70,7 @@ public class ClienteVIEW extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 		
 		cpf = new JTextField();
-		cpf.setBounds(47, 36, 221, 20);
+		cpf.setBounds(58, 36, 238, 20);
 		panel.add(cpf);
 		cpf.setColumns(10);
 		
@@ -75,7 +79,7 @@ public class ClienteVIEW extends JInternalFrame {
 		panel.add(lblNewLabel_3);
 		
 		telefone = new JTextField();
-		telefone.setBounds(67, 61, 159, 20);
+		telefone.setBounds(58, 61, 238, 20);
 		panel.add(telefone);
 		telefone.setColumns(10);
 		
@@ -84,7 +88,7 @@ public class ClienteVIEW extends JInternalFrame {
 		panel.add(lblNewLabel_4);
 		
 		cep = new JTextField();
-		cep.setBounds(35, 86, 159, 20);
+		cep.setBounds(56, 86, 240, 20);
 		panel.add(cep);
 		cep.setColumns(10);
 		
@@ -93,16 +97,16 @@ public class ClienteVIEW extends JInternalFrame {
 		panel.add(lblNewLabel_5);
 		
 		rua = new JTextField();
-		rua.setBounds(35, 114, 143, 20);
+		rua.setBounds(56, 114, 161, 20);
 		panel.add(rua);
 		rua.setColumns(10);
 		
 		JLabel numero = new JLabel("nº");
-		numero.setBounds(188, 117, 46, 14);
+		numero.setBounds(236, 117, 18, 14);
 		panel.add(numero);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(209, 114, 29, 20);
+		textField_5.setBounds(250, 114, 46, 20);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
@@ -121,6 +125,39 @@ public class ClienteVIEW extends JInternalFrame {
 		JButton btnSair = new JButton("Sair");
 		btnSair.setBounds(355, 226, 89, 23);
 		getContentPane().add(btnSair);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(473, 48, 214, 148);
+		getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		pesqNome = new JTextField();
+		pesqNome.setBounds(39, 11, 115, 20);
+		panel_1.add(pesqNome);
+		pesqNome.setColumns(10);
+		
+		JLabel lblNewLabel_7 = new JLabel("Nome:");
+		lblNewLabel_7.setBounds(8, 14, 31, 14);
+		panel_1.add(lblNewLabel_7);
+		
+		JButton btnPesq = new JButton("(lupa)");
+		btnPesq.setBounds(164, 10, 31, 23);
+		panel_1.add(btnPesq);
+		
+		TabelaCliente = new JTable();
+		TabelaCliente.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome"
+			}
+		));
+		TabelaCliente.setBounds(18, 42, 169, 95);
+		panel_1.add(TabelaCliente);
+		
+		JLabel lblNewLabel_6 = new JLabel("Pesquisar");
+		lblNewLabel_6.setBounds(553, 17, 46, 14);
+		getContentPane().add(lblNewLabel_6);
 
 	}
 }

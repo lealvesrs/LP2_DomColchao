@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class VendedorVIEW extends JInternalFrame {
 
@@ -20,6 +22,8 @@ public class VendedorVIEW extends JInternalFrame {
 	private JTextField data_nasc;
 	private JTextField ctps;
 	private JTextField remuneracao;
+	private JTextField nomePesq;
+	private JTable TabelaVendedor;
 
 	/**
 	 * Launch the application.
@@ -41,7 +45,7 @@ public class VendedorVIEW extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public VendedorVIEW() {
-		setBounds(100, 100, 476, 369);
+		setBounds(100, 100, 747, 369);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -70,45 +74,45 @@ public class VendedorVIEW extends JInternalFrame {
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("nº");
-		lblNewLabel_6.setBounds(188, 128, 11, 14);
+		lblNewLabel_6.setBounds(231, 128, 23, 14);
 		panel.add(lblNewLabel_6);
 		
 		nome = new JTextField();
-		nome.setBounds(51, 8, 232, 20);
+		nome.setBounds(69, 8, 228, 20);
 		panel.add(nome);
 		nome.setColumns(10);
 		
 		cpf = new JTextField();
-		cpf.setBounds(35, 36, 213, 20);
+		cpf.setBounds(69, 35, 228, 20);
 		panel.add(cpf);
 		cpf.setColumns(10);
 		
 		telefone = new JTextField();
-		telefone.setBounds(57, 66, 169, 20);
+		telefone.setBounds(69, 66, 228, 20);
 		panel.add(telefone);
 		telefone.setColumns(10);
 		
 		rua = new JTextField();
-		rua.setBounds(39, 125, 139, 20);
+		rua.setBounds(69, 125, 146, 20);
 		panel.add(rua);
 		rua.setColumns(10);
 		
 		cep = new JTextField();
-		cep.setBounds(35, 150, 162, 20);
+		cep.setBounds(69, 150, 228, 20);
 		panel.add(cep);
 		cep.setColumns(10);
 		
 		numero = new JTextField();
-		numero.setBounds(198, 125, 31, 20);
+		numero.setBounds(251, 125, 46, 20);
 		panel.add(numero);
 		numero.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("DataNascimento:");
-		lblNewLabel_7.setBounds(10, 100, 86, 14);
+		JLabel lblNewLabel_7 = new JLabel("DtaNasc:");
+		lblNewLabel_7.setBounds(10, 100, 46, 14);
 		panel.add(lblNewLabel_7);
 		
 		data_nasc = new JTextField();
-		data_nasc.setBounds(95, 97, 86, 20);
+		data_nasc.setBounds(69, 97, 228, 20);
 		panel.add(data_nasc);
 		data_nasc.setColumns(10);
 		
@@ -117,16 +121,16 @@ public class VendedorVIEW extends JInternalFrame {
 		panel.add(lblNewLabel_8);
 		
 		ctps = new JTextField();
-		ctps.setBounds(45, 175, 106, 20);
+		ctps.setBounds(69, 175, 228, 20);
 		panel.add(ctps);
 		ctps.setColumns(10);
 		
-		JLabel lblNewLabel_9 = new JLabel("Remuneração:");
-		lblNewLabel_9.setBounds(10, 207, 70, 14);
+		JLabel lblNewLabel_9 = new JLabel("Salário:");
+		lblNewLabel_9.setBounds(10, 207, 52, 14);
 		panel.add(lblNewLabel_9);
 		
 		remuneracao = new JTextField();
-		remuneracao.setBounds(81, 206, 86, 20);
+		remuneracao.setBounds(69, 204, 228, 20);
 		panel.add(remuneracao);
 		remuneracao.setColumns(10);
 		
@@ -149,6 +153,39 @@ public class VendedorVIEW extends JInternalFrame {
 		JButton btnSair = new JButton("Sair");
 		btnSair.setBounds(321, 305, 89, 23);
 		getContentPane().add(btnSair);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(444, 48, 235, 233);
+		getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_11 = new JLabel("Nome:");
+		lblNewLabel_11.setBounds(10, 11, 31, 14);
+		panel_1.add(lblNewLabel_11);
+		
+		nomePesq = new JTextField();
+		nomePesq.setBounds(40, 8, 131, 20);
+		panel_1.add(nomePesq);
+		nomePesq.setColumns(10);
+		
+		JButton btnPesq = new JButton("Lupa");
+		btnPesq.setBounds(181, 7, 44, 23);
+		panel_1.add(btnPesq);
+		
+		TabelaVendedor = new JTable();
+		TabelaVendedor.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome"
+			}
+		));
+		TabelaVendedor.setBounds(24, 57, 188, 150);
+		panel_1.add(TabelaVendedor);
+		
+		JLabel lblNewLabel_10 = new JLabel("Pesquisar");
+		lblNewLabel_10.setBounds(537, 23, 46, 14);
+		getContentPane().add(lblNewLabel_10);
 
 	}
 
