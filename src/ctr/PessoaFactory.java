@@ -2,6 +2,10 @@ package ctr;
 
 import java.time.LocalDate;
 
+import dto.Cliente;
+import dto.Pessoa;
+import dto.Vendedor;
+
 public class PessoaFactory {
     public static Pessoa criarPessoa(String tipo, String nome, String cpf, String cep, String telefone, String rua, int numero,
                                      LocalDate dataNascimento, String numeroSerieCarteiraTrabalho, Double remuneracao) {

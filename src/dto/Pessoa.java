@@ -1,4 +1,4 @@
-package ctr;
+package dto;
 
 public abstract class Pessoa {
 	    private String nome;
