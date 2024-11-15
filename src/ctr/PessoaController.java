@@ -2,6 +2,9 @@ package ctr;
 
 import dao.ClienteDAO;
 import dao.VendedorDAO;
+import dto.Cliente;
+import dto.Vendedor;
+
 import java.time.LocalDate;
 import java.util.List;
 

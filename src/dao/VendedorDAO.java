@@ -1,7 +1,8 @@
 package dao;
 
 import ctr.BancoDados;
-import ctr.Vendedor;
+import dto.Vendedor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;

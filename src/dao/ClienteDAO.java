@@ -1,7 +1,8 @@
 package dao;
 
 import ctr.BancoDados;
-import ctr.Cliente;
+import dto.Cliente;
+
 import java.sql.*;
 import java.sql.Connection;
 import java.util.ArrayList;

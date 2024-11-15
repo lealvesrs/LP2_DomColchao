@@ -1,8 +1,8 @@
 package view;
 
-import ctr.Cliente;
 import ctr.PessoaController;
-import ctr.Vendedor;
+import dto.Cliente;
+import dto.Vendedor;
 
 import java.time.LocalDate;
 import java.util.List;

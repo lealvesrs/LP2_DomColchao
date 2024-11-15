@@ -1,4 +1,4 @@
-package ctr;
+package dto;
 
 public class Cliente extends Pessoa {
 	public Cliente(String nome, String cpf, String cep, String telefone, String rua, int numero) {
