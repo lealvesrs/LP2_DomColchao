@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class ProdutoVIEW extends JInternalFrame {
 
@@ -122,16 +123,19 @@ public class ProdutoVIEW extends JInternalFrame {
 		btnPesquisar.setBounds(175, 7, 31, 23);
 		panel_1.add(btnPesquisar);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 40, 172, 118);
+		panel_1.add(scrollPane);
+		
 		TabelaProduto = new JTable();
+		scrollPane.setViewportView(TabelaProduto);
 		TabelaProduto.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Nome:"
+				"ID", "Nome:"
 			}
 		));
-		TabelaProduto.setBounds(20, 41, 172, 117);
-		panel_1.add(TabelaProduto);
 		
 		JLabel lblNewLabel = new JLabel("Produtos");
 		lblNewLabel.setBounds(183, 34, 46, 14);

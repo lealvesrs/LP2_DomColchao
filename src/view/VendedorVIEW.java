@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class VendedorVIEW extends JInternalFrame {
 
@@ -172,16 +173,19 @@ public class VendedorVIEW extends JInternalFrame {
 		btnPesq.setBounds(181, 7, 44, 23);
 		panel_1.add(btnPesq);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(23, 57, 189, 150);
+		panel_1.add(scrollPane);
+		
 		TabelaVendedor = new JTable();
+		scrollPane.setViewportView(TabelaVendedor);
 		TabelaVendedor.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Nome"
+				"ID", "Nome"
 			}
 		));
-		TabelaVendedor.setBounds(24, 57, 188, 150);
-		panel_1.add(TabelaVendedor);
 		
 		JLabel lblNewLabel_10 = new JLabel("Pesquisar");
 		lblNewLabel_10.setBounds(537, 23, 46, 14);

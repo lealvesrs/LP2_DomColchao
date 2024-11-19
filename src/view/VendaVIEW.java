@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class VendaVIEW extends JInternalFrame {
 
@@ -106,17 +107,6 @@ public class VendaVIEW extends JInternalFrame {
 		btnPesqProduto.setBounds(202, 7, 46, 23);
 		panel_1.add(btnPesqProduto);
 		
-		TabelaProduto = new JTable();
-		TabelaProduto.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Nome", "Valor"
-			}
-		));
-		TabelaProduto.setBounds(20, 36, 228, 128);
-		panel_1.add(TabelaProduto);
-		
 		JButton btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,7 +119,26 @@ public class VendaVIEW extends JInternalFrame {
 		btnRetirar.setBounds(146, 190, 89, 23);
 		panel_1.add(btnRetirar);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 36, 228, 128);
+		panel_1.add(scrollPane);
+		
+		TabelaProduto = new JTable();
+		scrollPane.setViewportView(TabelaProduto);
+		TabelaProduto.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Nome", "Valor"
+			}
+		));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 236, 238, 111);
+		panel_1.add(scrollPane_1);
+		
 		TabelaVenda = new JTable();
+		scrollPane_1.setViewportView(TabelaVenda);
 		TabelaVenda.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -137,8 +146,6 @@ public class VendaVIEW extends JInternalFrame {
 				"ID", "Nome", "Valor", "QTD"
 			}
 		));
-		TabelaVenda.setBounds(10, 238, 238, 109);
-		panel_1.add(TabelaVenda);
 		
 		JLabel lblNewLabel = new JLabel("Dados");
 		lblNewLabel.setBounds(152, 11, 46, 14);
