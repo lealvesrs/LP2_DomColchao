@@ -29,6 +29,7 @@ public class MenuVIEW extends JFrame {
 				try {
 					MenuVIEW frame = new MenuVIEW();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
