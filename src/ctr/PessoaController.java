@@ -32,6 +32,10 @@ public class PessoaController {
         return clienteDAO.inserir(cliente);
     }
 
+    
+    public List<Cliente> pesquisarPorNome(String nome) {
+        return clienteDAO.pesquisarPorNome(nome);
+    }
 
     public List<Cliente> listarClientes() {
         return clienteDAO.listar();
