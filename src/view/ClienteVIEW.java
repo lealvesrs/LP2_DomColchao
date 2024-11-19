@@ -124,6 +124,7 @@ public class ClienteVIEW extends JInternalFrame {
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 22));
 		setBounds(100, 100, 749, 329);
 		getContentPane().setLayout(null);
+		setTitle("Cadastro de Cliente");
 		
 		JLabel lblNewLabel = new JLabel("Cliente");
 		lblNewLabel.setBounds(221, 11, 44, 26);
@@ -261,9 +262,8 @@ public class ClienteVIEW extends JInternalFrame {
 		panel_1.add(scrollPane);
 		
 		TabelaCliente = new JTable();
-<<<<<<< Updated upstream
 		scrollPane.setViewportView(TabelaCliente);
-=======
+
 		TabelaCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent evt) {
@@ -278,12 +278,12 @@ public class ClienteVIEW extends JInternalFrame {
 			        }
 			}
 		});
->>>>>>> Stashed changes
+
 		TabelaCliente.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome"
+				 "Nome", "CPF",
 			}
 		));
 		

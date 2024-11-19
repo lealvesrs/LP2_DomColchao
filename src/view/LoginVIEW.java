@@ -6,10 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JDesktopPane;
 
 public class LoginVIEW extends JFrame {
 
@@ -79,7 +81,16 @@ public class LoginVIEW extends JFrame {
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirClienteVIEW();
+				String txtLogin = login.getText();
+				String txtSenha = senha.getText();
+				
+				if(txtLogin.isEmpty() || txtSenha.isEmpty()) JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+				else {
+					if(txtLogin.equals("admin") && txtSenha.equals("admin")) abrirMenu();
+					else JOptionPane.showMessageDialog(null, "Login ou Senha incorretos");
+				}
+				
+//				abrirClienteVIEW();
 			}
 		});
 		btnEntrar.setBounds(68, 248, 89, 23);
@@ -88,20 +99,16 @@ public class LoginVIEW extends JFrame {
 		JButton btnSair = new JButton("Sair");
 		btnSair.setBounds(282, 248, 89, 23);
 		contentPane.add(btnSair);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(2, -1, 437, 1);
+		contentPane.add(desktopPane);
 	}
 	
-	private void abrirClienteVIEW() {
-        ClienteVIEW clienteView = new ClienteVIEW();
-        clienteView.setVisible(true);
-        clienteView.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().add(clienteView);
-		frame.setResizable(true);
-		frame.setVisible(true);
-        try {
-            clienteView.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {
-            e.printStackTrace();
-        }
-    }
+	private void abrirMenu() {
+		 MenuVIEW menu = new MenuVIEW();
+			 menu.setVisible(true);
+			 menu.setResizable(false);
+			 dispose();
+	}
 }
