@@ -32,6 +32,52 @@ public class ClienteDAO {
             return false;
         }
     }
+    
+    
+    public boolean alterar(Cliente cliente) {
+        String sql = "UPDATE Cliente SET nome = ?, cep = ?, telefone = ?, rua = ?, numero = ? WHERE cpf = ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getCep());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setString(4, cliente.getRua());
+            stmt.setInt(5, cliente.getNumero());
+            stmt.setString(6, cliente.getCpf());
+
+            int linhasAfetadas = stmt.executeUpdate();
+            
+            return linhasAfetadas > 0;
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar cliente: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public List<Cliente> pesquisarPorNome(String nomeBusca) {
+        List<Cliente> clientes = new ArrayList<>();
+        String sql = "SELECT * FROM Cliente WHERE nome ILIKE ?";
+        
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, "%" + nomeBusca + "%"); 
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Cliente cliente = new Cliente(
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("cep"),
+                        rs.getString("telefone"),
+                        rs.getString("rua"),
+                        rs.getInt("numero")
+                    );
+                    clientes.add(cliente);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao pesquisar cliente: " + e.getMessage());
+        }
+        return clientes;
+    }
 
 
     public List<Cliente> listar() {

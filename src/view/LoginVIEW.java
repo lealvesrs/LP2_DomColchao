@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginVIEW extends JFrame {
 
@@ -15,6 +17,8 @@ public class LoginVIEW extends JFrame {
 	private JPanel contentPane;
 	private JTextField login;
 	private JTextField senha;
+	JFrame frame = new JFrame();
+	
 
 	/**
 	 * Launch the application.
@@ -73,6 +77,11 @@ public class LoginVIEW extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirClienteVIEW();
+			}
+		});
 		btnEntrar.setBounds(68, 248, 89, 23);
 		contentPane.add(btnEntrar);
 		
@@ -80,4 +89,19 @@ public class LoginVIEW extends JFrame {
 		btnSair.setBounds(282, 248, 89, 23);
 		contentPane.add(btnSair);
 	}
+	
+	private void abrirClienteVIEW() {
+        ClienteVIEW clienteView = new ClienteVIEW();
+        clienteView.setVisible(true);
+        clienteView.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.getContentPane().add(clienteView);
+		frame.setResizable(true);
+		frame.setVisible(true);
+        try {
+            clienteView.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }
 }
