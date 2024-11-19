@@ -329,6 +329,7 @@ public class ClienteVIEW extends JInternalFrame {
 							habilitaCampos(false);
 							cpf.setEnabled(false);
 			                btnCancelar.setEnabled(true);
+			                btnExcluir.setEnabled(true);
 					        btnEditar.setEnabled(true);
 					        btnSalvar.setEnabled(false);
 			            }
@@ -349,6 +350,27 @@ public class ClienteVIEW extends JInternalFrame {
 		getContentPane().add(lblNewLabel_6);
 		
 		 btnExcluir = new JButton("Excluir");
+		 btnExcluir.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		int resposta = JOptionPane.showConfirmDialog(
+		 	            null, 
+		 	            "Tem certeza que deseja excluir?", 
+		 	            "Confirmação de Exclusão", 
+		 	            JOptionPane.YES_NO_OPTION, 
+		 	            JOptionPane.QUESTION_MESSAGE
+		 	        );
+
+		 	        
+		 	        if (resposta == JOptionPane.YES_OPTION) {
+		 	            boolean status = pessoaController.excluirCliente(cpf.getText()); 	
+		 	           exibeMensagem(status,"excluir");
+		 	           if(status) {
+		 	        	  limpaCampos();
+		 	        	  limpaTabela();
+		 	           }
+		 	        } 
+		 	}
+		 });
 		btnExcluir.setEnabled(false);
 		btnExcluir.setBounds(245, 226, 89, 23);
 		getContentPane().add(btnExcluir);

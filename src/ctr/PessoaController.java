@@ -45,6 +45,10 @@ public class PessoaController {
     public Boolean verificaExistencia(String cpf) {
         return clienteDAO.verificaExistencia(cpf);
     }
+    
+    public Boolean excluirCliente(String cpf) {
+        return clienteDAO.excluir(cpf);
+    }
 
     public List<Cliente> listarClientes() {
         return clienteDAO.listar();

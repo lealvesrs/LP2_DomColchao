@@ -54,6 +54,21 @@ public class ClienteDAO {
     }
     
     
+    public boolean excluir(String cpf) {
+        String sql = "DELETE FROM Cliente WHERE cpf = ?";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, cpf);
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0; 
+        } catch (SQLException e) {
+            System.err.println("Erro ao excluir cliente: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    
     
     public Boolean verificaExistencia(String cpf) {
         String sql = "SELECT COUNT(*) AS total FROM Cliente WHERE cpf = ?";
