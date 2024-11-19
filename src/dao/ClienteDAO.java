@@ -34,7 +34,7 @@ public class ClienteDAO {
     }
     
     
-    public boolean alterar(Cliente cliente) {
+    public boolean editar(Cliente cliente) {
         String sql = "UPDATE Cliente SET nome = ?, cep = ?, telefone = ?, rua = ?, numero = ? WHERE cpf = ?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, cliente.getNome());
@@ -52,6 +52,27 @@ public class ClienteDAO {
             return false;
         }
     }
+    
+    
+    
+    public Boolean verificaExistencia(String cpf) {
+        String sql = "SELECT COUNT(*) AS total FROM Cliente WHERE cpf = ?";
+        
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, cpf); 
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int total = rs.getInt("total");
+                    return total > 0; 
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao verificar CPF: " + e.getMessage());
+        }
+        return false; 
+    }
+
     
     public List<Cliente> pesquisarPorNome(String nomeBusca) {
         List<Cliente> clientes = new ArrayList<>();

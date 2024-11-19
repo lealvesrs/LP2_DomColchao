@@ -32,9 +32,18 @@ public class PessoaController {
         return clienteDAO.inserir(cliente);
     }
 
+    public boolean editarCliente(String nome, String cpf, String cep, String telefone, 
+            String rua, int numero) {
+		Cliente cliente = new Cliente(nome, cpf, cep, telefone, rua, numero);
+		return clienteDAO.editar(cliente);
+	}
     
     public List<Cliente> pesquisarPorNome(String nome) {
         return clienteDAO.pesquisarPorNome(nome);
+    }
+    
+    public Boolean verificaExistencia(String cpf) {
+        return clienteDAO.verificaExistencia(cpf);
     }
 
     public List<Cliente> listarClientes() {
