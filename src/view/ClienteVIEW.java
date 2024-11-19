@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class ClienteVIEW extends JInternalFrame {
 
@@ -127,7 +128,7 @@ public class ClienteVIEW extends JInternalFrame {
 		getContentPane().add(btnSair);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(473, 48, 214, 148);
+		panel_1.setBounds(473, 48, 234, 148);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -144,16 +145,19 @@ public class ClienteVIEW extends JInternalFrame {
 		btnPesq.setBounds(164, 10, 31, 23);
 		panel_1.add(btnPesq);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(18, 42, 193, 95);
+		panel_1.add(scrollPane);
+		
 		TabelaCliente = new JTable();
+		scrollPane.setViewportView(TabelaCliente);
 		TabelaCliente.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Nome"
+				"ID", "Nome"
 			}
 		));
-		TabelaCliente.setBounds(18, 42, 169, 95);
-		panel_1.add(TabelaCliente);
 		
 		JLabel lblNewLabel_6 = new JLabel("Pesquisar");
 		lblNewLabel_6.setBounds(553, 17, 46, 14);
