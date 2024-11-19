@@ -34,6 +34,10 @@ public class ClienteVIEW extends JInternalFrame {
 	private JTextField numero;
 	private JTextField pesqNome;
 	private JTable TabelaCliente;
+	private JButton btnCancelar;
+	private JButton btnEditar;
+	private JButton btnSalvar;
+	private JButton btnExcluir;
 
 	/**
 	 * Launch the application.
@@ -76,6 +80,7 @@ public class ClienteVIEW extends JInternalFrame {
 				break;
 			}
 			limpaCampos();
+			limpaTabela();
 			
 		}else {
 			JOptionPane.showMessageDialog(null, "Erro ao "+ acao);
@@ -90,6 +95,25 @@ public class ClienteVIEW extends JInternalFrame {
 		cep.setText("");
 		rua.setText("");
 		numero.setText("");
+		pesqNome.setText("");
+		btnSalvar.setEnabled(true);
+		btnEditar.setEnabled(false);
+		btnExcluir.setEnabled(false);
+		cpf.setEnabled(true);
+		habilitaCampos(true);
+	}
+	
+	private void limpaTabela() {
+		DefaultTableModel model = (DefaultTableModel) TabelaCliente.getModel();
+        model.setRowCount(0); 
+	}
+	
+	private void habilitaCampos(Boolean status) {
+		nome.setEnabled(status);
+		telefone.setEnabled(status);
+		cep.setEnabled(status);
+		rua.setEnabled(status);
+		numero.setEnabled(status);
 	}
 	
 	private void preencheTabela(List<Cliente> clientes) {
@@ -189,24 +213,33 @@ public class ClienteVIEW extends JInternalFrame {
 		panel.add(numero);
 		numero.setColumns(10);
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
+		 btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(verificaPreenchimento()) {
-				String nomeCli = nome.getText();
-				String cpfCli = cep.getText();
-				String telCli = telefone.getText();
-				String cepCli = cep.getText();
-				String ruaCli = rua.getText();
-				int numeroCli = 0;
-				try {
-					numeroCli = Integer.parseInt(numero.getText());
-				}catch (Exception err) {
-					JOptionPane.showMessageDialog(null, "Número da residência no formato inválido");
-					return;
-				}
-					boolean status = pessoaController.criarCliente(nomeCli, telCli, cepCli, cpfCli, ruaCli, numeroCli);
-					exibeMensagem(status,"cadastrar");
+					String nomeCli = nome.getText();
+					String cpfCli = cep.getText();
+					String telCli = telefone.getText();
+					String cepCli = cep.getText();
+					String ruaCli = rua.getText();
+					int numeroCli;
+					
+					try {
+						numeroCli = Integer.parseInt(numero.getText());
+					}catch (Exception err) {
+						JOptionPane.showMessageDialog(null, "Número da residência no formato inválido");
+						return;
+					}
+		
+					if(pessoaController.verificaExistencia(cpfCli)) {
+						 boolean status = pessoaController.editarCliente(nomeCli,cpfCli, cepCli, telCli, ruaCli, numeroCli);
+						exibeMensagem(status,"editar");
+					}else {
+						boolean status = pessoaController.criarCliente(nomeCli,cpfCli, cepCli, telCli, ruaCli, numeroCli);
+						exibeMensagem(status,"cadastrar");
+					} 
+				
+					
 				}else {
 					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
 				}
@@ -214,19 +247,38 @@ public class ClienteVIEW extends JInternalFrame {
 				
 			}
 		});
-		btnCadastrar.setBounds(36, 226, 89, 23);
-		getContentPane().add(btnCadastrar);
+		btnSalvar.setBounds(47, 226, 89, 23);
+		getContentPane().add(btnSalvar);
 		
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnEditar.setEnabled(false);
+				btnSalvar.setEnabled(true);
+				habilitaCampos(true);
+			}
+		});
+		btnEditar.setEnabled(false);
 		btnEditar.setBounds(146, 226, 89, 23);
 		getContentPane().add(btnEditar);
 		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(245, 226, 89, 23);
-		getContentPane().add(btnExcluir);
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpaCampos();
+				limpaTabela();
+			}
+		});
+		btnCancelar.setBounds(344, 226, 89, 23);
+		getContentPane().add(btnCancelar);
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setBounds(355, 226, 89, 23);
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSair.setBounds(443, 226, 89, 23);
 		getContentPane().add(btnSair);
 		
 		JPanel panel_1 = new JPanel();
@@ -248,10 +300,10 @@ public class ClienteVIEW extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				 List<Cliente> clientes;
 				
-				if(!pesqNome.getText().isEmpty()) clientes = pessoaController.pesquisarPorNome(nome.getText());
-					
+				if(!pesqNome.getText().isEmpty()) clientes = pessoaController.pesquisarPorNome(pesqNome.getText());
 				else clientes = pessoaController.listarClientes();
 				preencheTabela(clientes);
+				
 			}
 		});
 		btnPesq.setBounds(164, 10, 31, 23);
@@ -274,6 +326,12 @@ public class ClienteVIEW extends JInternalFrame {
 			        	    String nome = model.getValueAt(row, 0).toString();
 			            	List<Cliente> clientes = pessoaController.pesquisarPorNome(nome);
 			                preencherCampos(clientes);
+							habilitaCampos(false);
+							cpf.setEnabled(false);
+			                btnCancelar.setEnabled(true);
+			                btnExcluir.setEnabled(true);
+					        btnEditar.setEnabled(true);
+					        btnSalvar.setEnabled(false);
 			            }
 			        }
 			}
@@ -291,7 +349,31 @@ public class ClienteVIEW extends JInternalFrame {
 		lblNewLabel_6.setBounds(553, 17, 46, 14);
 		getContentPane().add(lblNewLabel_6);
 		
+		 btnExcluir = new JButton("Excluir");
+		 btnExcluir.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		int resposta = JOptionPane.showConfirmDialog(
+		 	            null, 
+		 	            "Tem certeza que deseja excluir?", 
+		 	            "Confirmação de Exclusão", 
+		 	            JOptionPane.YES_NO_OPTION, 
+		 	            JOptionPane.QUESTION_MESSAGE
+		 	        );
+
+		 	        
+		 	        if (resposta == JOptionPane.YES_OPTION) {
+		 	            boolean status = pessoaController.excluirCliente(cpf.getText()); 	
+		 	           exibeMensagem(status,"excluir");
+		 	           if(status) {
+		 	        	  limpaCampos();
+		 	        	  limpaTabela();
+		 	           }
+		 	        } 
+		 	}
+		 });
+		btnExcluir.setEnabled(false);
+		btnExcluir.setBounds(245, 226, 89, 23);
+		getContentPane().add(btnExcluir);
+		
 	}
-	
-	
 }
