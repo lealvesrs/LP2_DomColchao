@@ -183,7 +183,7 @@ public class VendedorVIEW extends JInternalFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome"
+				"Nome", "CPF"
 			}
 		));
 		

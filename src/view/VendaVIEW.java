@@ -129,7 +129,7 @@ public class VendaVIEW extends JInternalFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome", "Valor"
+				"Nome", "CPF", "Valor"
 			}
 		));
 		
@@ -143,7 +143,7 @@ public class VendaVIEW extends JInternalFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome", "Valor", "QTD"
+				"Nome", "CPF", "Valor", "QTD"
 			}
 		));
 		

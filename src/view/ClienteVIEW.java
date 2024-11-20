@@ -155,7 +155,7 @@ public class ClienteVIEW extends JInternalFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome"
+				"Nome", "CPF"
 			}
 		));
 		
