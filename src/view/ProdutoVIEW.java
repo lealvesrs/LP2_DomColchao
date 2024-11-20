@@ -133,7 +133,7 @@ public class ProdutoVIEW extends JInternalFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome:"
+				"Nome:", "CPF"
 			}
 		));
 		
