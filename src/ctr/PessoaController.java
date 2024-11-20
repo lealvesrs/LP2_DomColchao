@@ -2,6 +2,9 @@ package ctr;
 
 import dao.ClienteDAO;
 import dao.VendedorDAO;
+import dto.Cliente;
+import dto.Vendedor;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,6 +32,23 @@ public class PessoaController {
         return clienteDAO.inserir(cliente);
     }
 
+    public boolean editarCliente(String nome, String cpf, String cep, String telefone, 
+            String rua, int numero) {
+		Cliente cliente = new Cliente(nome, cpf, cep, telefone, rua, numero);
+		return clienteDAO.editar(cliente);
+	}
+    
+    public List<Cliente> pesquisarPorNome(String nome) {
+        return clienteDAO.pesquisarPorNome(nome);
+    }
+    
+    public Boolean verificaExistencia(String cpf) {
+        return clienteDAO.verificaExistencia(cpf);
+    }
+    
+    public Boolean excluirCliente(String cpf) {
+        return clienteDAO.excluir(cpf);
+    }
 
     public List<Cliente> listarClientes() {
         return clienteDAO.listar();

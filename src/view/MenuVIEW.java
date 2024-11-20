@@ -11,11 +11,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuVIEW extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	JFrame frame = new JFrame();
 
 	/**
 	 * Launch the application.
@@ -26,6 +29,7 @@ public class MenuVIEW extends JFrame {
 				try {
 					MenuVIEW frame = new MenuVIEW();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,6 +54,11 @@ public class MenuVIEW extends JFrame {
 		MenuCadastro.add(itemMenuCadastroVendedor);
 		
 		JMenuItem itemMenuCadastroCliente = new JMenuItem("Cliente");
+		itemMenuCadastroCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirClienteVIEW();
+			}
+		});
 		MenuCadastro.add(itemMenuCadastroCliente);
 		
 		JMenuItem itemMenuCadastroProduto = new JMenuItem("Produto");
@@ -72,5 +81,29 @@ public class MenuVIEW extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 729, 383);
+		contentPane.add(desktopPane);
 	}
+	
+	private void abrirClienteVIEW() {
+	    ClienteVIEW clienteView = new ClienteVIEW();
+	    clienteView.setClosable(false);
+	    clienteView.setResizable(false);
+	    clienteView.setMaximizable(false);
+	    clienteView.setIconifiable(true);
+	    clienteView.setVisible(true);
+
+	  
+	    JDesktopPane desktopPane = (JDesktopPane) contentPane.getComponent(0); 
+	    clienteView.setBounds(0, 0, desktopPane.getWidth(), desktopPane.getHeight());
+	    desktopPane.add(clienteView); 
+	    try {
+	        clienteView.setSelected(true); 
+	    } catch (java.beans.PropertyVetoException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 }
