@@ -51,6 +51,11 @@ public class MenuVIEW extends JFrame {
 		menuBar.add(MenuCadastro);
 		
 		JMenuItem itemMenuCadastroVendedor = new JMenuItem("Vendedor");
+		itemMenuCadastroVendedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirVendedorVIEW();
+			}
+		});
 		MenuCadastro.add(itemMenuCadastroVendedor);
 		
 		JMenuItem itemMenuCadastroCliente = new JMenuItem("Cliente");
@@ -101,6 +106,25 @@ public class MenuVIEW extends JFrame {
 	    desktopPane.add(clienteView); 
 	    try {
 	        clienteView.setSelected(true); 
+	    } catch (java.beans.PropertyVetoException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	private void abrirVendedorVIEW() {
+	    VendedorVIEW vendedorView = new VendedorVIEW();
+	    vendedorView.setClosable(false);
+	    vendedorView.setResizable(false);
+	    vendedorView.setMaximizable(false);
+	    vendedorView.setIconifiable(true);
+	    vendedorView.setVisible(true);
+
+	  
+	    JDesktopPane desktopPane = (JDesktopPane) contentPane.getComponent(0); 
+	    vendedorView.setBounds(0, 0, desktopPane.getWidth(), desktopPane.getHeight());
+	    desktopPane.add(vendedorView); 
+	    try {
+	        vendedorView.setSelected(true); 
 	    } catch (java.beans.PropertyVetoException e) {
 	        e.printStackTrace();
 	    }

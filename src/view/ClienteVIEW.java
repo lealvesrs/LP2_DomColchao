@@ -218,7 +218,7 @@ public class ClienteVIEW extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(verificaPreenchimento()) {
 					String nomeCli = nome.getText();
-					String cpfCli = cep.getText();
+					String cpfCli = cpf.getText();
 					String telCli = telefone.getText();
 					String cepCli = cep.getText();
 					String ruaCli = rua.getText();

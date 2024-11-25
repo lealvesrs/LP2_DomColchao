@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JPasswordField;
 
 
 public class LoginVIEW extends JFrame {
@@ -24,8 +25,8 @@ public class LoginVIEW extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField login;
-	private JTextField senha;
 	JFrame frame = new JFrame();
+	private JPasswordField senha;
 	
 
 	/**
@@ -55,8 +56,6 @@ public class LoginVIEW extends JFrame {
 		contentPane.setBackground(new Color(249, 235, 223));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		
-		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -81,53 +80,40 @@ public class LoginVIEW extends JFrame {
 		panel.add(login);
 		login.setColumns(10);
 		
-		senha = new JTextField();
-		senha.setBounds(76, 104, 261, 20);
+		senha = new JPasswordField();
+		senha.setBounds(76, 104, 263, 20);
 		panel.add(senha);
-		senha.setColumns(10);
 		
 
 		JButton btnEntrar = new JButton("");
 		btnEntrar.setBackground(new Color(249, 235, 223));
-		btnEntrar.setIcon(new ImageIcon("C:\\Users\\marci\\Downloads\\login_16dp_F_FILL0_wght400_GRAD0_opsz20.png"));
-		btnEntrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnEntrar.setBounds(237, 342, 54, 54);
-		contentPane.add(btnEntrar);
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\marci\\Downloads\\imagemLogo-removebg-preview.png"));
-		lblNewLabel_2.setBounds(175, 22, 159, 89);
-		contentPane.add(lblNewLabel_2);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(155, 11, 121, 56);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.setIcon(new ImageIcon("src/imagens/login_16dp_F_FILL0_wght400_GRAD0_opsz20.png"));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String txtLogin = login.getText();
-				String txtSenha = senha.getText();
+				String txtSenha = new String(senha.getPassword()).trim();
 				
 				if(txtLogin.isEmpty() || txtSenha.isEmpty()) JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 				else {
 					if(txtLogin.equals("admin") && txtSenha.equals("admin")) abrirMenu();
 					else JOptionPane.showMessageDialog(null, "Login ou Senha incorretos");
 				}
-				
-//				abrirClienteVIEW();
 			}
 		});
-		btnEntrar.setBounds(68, 248, 89, 23);
+		
+		btnEntrar.setBounds(237, 342, 54, 54);
 		contentPane.add(btnEntrar);
 		
-		JButton btnSair = new JButton("Sair");
-		btnSair.setBounds(282, 248, 89, 23);
-		contentPane.add(btnSair);
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("src/imagens/imagemLogo-removebg-preview.png"));
+		lblNewLabel_2.setBounds(175, 22, 159, 89);
+		contentPane.add(lblNewLabel_2);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(249, 235, 222));
+		panel_1.setBounds(155, 11, 121, 56);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBounds(2, -1, 437, 1);
@@ -138,6 +124,7 @@ public class LoginVIEW extends JFrame {
 		 MenuVIEW menu = new MenuVIEW();
 			 menu.setVisible(true);
 			 menu.setResizable(false);
+			 menu.setLocationRelativeTo(null);
 			 dispose();
 
 	}
