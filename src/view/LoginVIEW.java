@@ -91,7 +91,7 @@ public class LoginVIEW extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String txtLogin = login.getText();
-				String txtSenha = senha.getText();
+				String txtSenha = new String(senha.getPassword()).trim();
 				
 				if(txtLogin.isEmpty() || txtSenha.isEmpty()) JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 				else {
