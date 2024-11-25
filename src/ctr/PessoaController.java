@@ -18,13 +18,6 @@ public class PessoaController {
     }
 
    
-    public boolean criarVendedor(String nome, String cpf, String cep, String telefone, 
-                                            String rua, int numero, LocalDate dataNascimento, 
-                                            String numeroSerieCarteiraTrabalho, double remuneracao) {
-        Vendedor vendedor = new Vendedor(nome, cpf, cep, telefone, rua, numero, dataNascimento, 
-                                          numeroSerieCarteiraTrabalho, remuneracao);
-        return vendedorDAO.inserir(vendedor);
-    }
 
     public boolean criarCliente(String nome, String cpf, String cep, String telefone, 
                                           String rua, int numero) {
@@ -53,8 +46,37 @@ public class PessoaController {
     public List<Cliente> listarClientes() {
         return clienteDAO.listar();
     }
+    
+    public boolean criarVendedor(String nome, String cpf, String cep, String telefone, 
+            String rua, int numero, LocalDate dataNascimento, 
+            String numeroSerieCarteiraTrabalho, double remuneracao) {
+	Vendedor vendedor = new Vendedor(nome, cpf, cep, telefone, rua, numero, dataNascimento, 
+	          numeroSerieCarteiraTrabalho, remuneracao);
+	return vendedorDAO.inserir(vendedor);
+	}
+    
+    public boolean editarVendedor(String nome, String cpf, String cep, String telefone, 
+            String rua, int numero, LocalDate dataNascimento, 
+            String numeroSerieCarteiraTrabalho, double remuneracao) {
+    	Vendedor vendedor = new Vendedor(nome, cpf, cep, telefone, rua, numero, dataNascimento, 
+  	          numeroSerieCarteiraTrabalho, remuneracao);
+		return vendedorDAO.editar(vendedor);
+	}
 
     public List<Vendedor> listarVendedores() {
         return vendedorDAO.listar();
     }
+    
+    public List<Vendedor> pesquisarPorNomeVendedor(String nome) {
+        return vendedorDAO.pesquisarPorNome(nome);
+    }
+    
+    public Boolean excluirVendedor(String cpf) {
+        return vendedorDAO.excluir(cpf);
+    }
+    
+    public Boolean verificaExistenciaVendedor(String cpf) {
+        return vendedorDAO.verificaExistencia(cpf);
+    }
+    
 }
