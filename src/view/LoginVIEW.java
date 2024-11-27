@@ -108,12 +108,6 @@ public class LoginVIEW extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon("src/imagens/imagemLogo-removebg-preview.png"));
 		lblNewLabel_2.setBounds(175, 22, 159, 89);
 		contentPane.add(lblNewLabel_2);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(249, 235, 222));
-		panel_1.setBounds(155, 11, 121, 56);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBounds(2, -1, 437, 1);
