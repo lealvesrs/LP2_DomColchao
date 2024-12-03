@@ -3,6 +3,7 @@ package ctr;
 import dao.ClienteDAO;
 import dao.VendedorDAO;
 import dto.Cliente;
+import dto.Pessoa;
 import dto.Vendedor;
 
 import java.time.LocalDate;
@@ -21,14 +22,14 @@ public class PessoaController {
 
     public boolean criarCliente(String nome, String cpf, String cep, String telefone, 
                                           String rua, int numero) {
-        Cliente cliente = new Cliente(nome, cpf, cep, telefone, rua, numero);
-        return clienteDAO.inserir(cliente);
+        Pessoa cliente = PessoaFactory.criarPessoa("cliente",nome, cpf, cep, telefone, rua, numero,null,null,null);
+        return clienteDAO.inserir((Cliente) cliente);
     }
 
     public boolean editarCliente(String nome, String cpf, String cep, String telefone, 
             String rua, int numero) {
-		Cliente cliente = new Cliente(nome, cpf, cep, telefone, rua, numero);
-		return clienteDAO.editar(cliente);
+    	Pessoa cliente = (Cliente) PessoaFactory.criarPessoa("cliente",nome, cpf, cep, telefone, rua, numero, null,null,null);
+		return clienteDAO.editar((Cliente) cliente);
 	}
     
     public List<Cliente> pesquisarPorNome(String nome) {
@@ -50,17 +51,17 @@ public class PessoaController {
     public boolean criarVendedor(String nome, String cpf, String cep, String telefone, 
             String rua, int numero, LocalDate dataNascimento, 
             String numeroSerieCarteiraTrabalho, double remuneracao) {
-	Vendedor vendedor = new Vendedor(nome, cpf, cep, telefone, rua, numero, dataNascimento, 
+	Pessoa vendedor = new Vendedor(nome, cpf, cep, telefone, rua, numero, dataNascimento, 
 	          numeroSerieCarteiraTrabalho, remuneracao);
-	return vendedorDAO.inserir(vendedor);
+	return vendedorDAO.inserir((Vendedor)vendedor);
 	}
     
     public boolean editarVendedor(String nome, String cpf, String cep, String telefone, 
             String rua, int numero, LocalDate dataNascimento, 
             String numeroSerieCarteiraTrabalho, double remuneracao) {
-    	Vendedor vendedor = new Vendedor(nome, cpf, cep, telefone, rua, numero, dataNascimento, 
+    	Pessoa vendedor = (Vendedor) PessoaFactory.criarPessoa("vendedor",nome, cpf, cep, telefone, rua, numero, dataNascimento, 
   	          numeroSerieCarteiraTrabalho, remuneracao);
-		return vendedorDAO.editar(vendedor);
+		return vendedorDAO.editar((Vendedor)vendedor);
 	}
 
     public List<Vendedor> listarVendedores() {

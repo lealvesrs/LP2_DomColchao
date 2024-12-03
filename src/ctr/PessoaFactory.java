@@ -6,7 +6,7 @@ import dto.Cliente;
 import dto.Pessoa;
 import dto.Vendedor;
 
-public class PessoaFactory {
+public class PessoaFactory extends AbstractFactory {
     public static Pessoa criarPessoa(String tipo, String nome, String cpf, String cep, String telefone, String rua, int numero,
                                      LocalDate dataNascimento, String numeroSerieCarteiraTrabalho, Double remuneracao) {
         switch (tipo.toLowerCase()) {
@@ -18,4 +18,8 @@ public class PessoaFactory {
                 throw new IllegalArgumentException("Tipo de pessoa desconhecido");
         }
     }
+
+	public Pessoa criarPessoa() {
+		return null;
+	}
 }
