@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class VendaVIEW extends JInternalFrame {
 
@@ -42,28 +44,49 @@ public class VendaVIEW extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public VendaVIEW() {
-		setBounds(100, 100, 747, 491);
+		getContentPane().setBackground(new Color(249, 235, 223));
+		setBounds(100, 100, 749, 545);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(29, 38, 312, 344);
+		panel.setBackground(new Color(249, 235, 229));
+		panel.setBounds(29, 96, 329, 344);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("Cliente");
-		lblNewLabel_2.setBounds(10, 11, 33, 14);
+		lblNewLabel_2.setBounds(10, 40, 33, 14);
 		panel.add(lblNewLabel_2);
 		
 		PesqCliente = new JTextField();
-		PesqCliente.setBounds(47, 8, 188, 20);
+		PesqCliente.setBounds(50, 37, 188, 20);
 		panel.add(PesqCliente);
 		PesqCliente.setColumns(10);
 		
-		JButton btnPesqCliente = new JButton("New button");
-		btnPesqCliente.setBounds(245, 7, 49, 23);
+		JButton btnPesqCliente = new JButton("Pesquisar");
+		btnPesqCliente.setBackground(new Color(249, 235, 229));
+		btnPesqCliente.setBounds(239, 36, 80, 23);
 		panel.add(btnPesqCliente);
 		
+		JLabel lblNewLabel_3 = new JLabel("Total da venda:");
+		lblNewLabel_3.setBounds(10, 294, 81, 39);
+		panel.add(lblNewLabel_3);
+		
+		JLabel TotalVenda = new JLabel("0.00");
+		TotalVenda.setBounds(106, 293, 81, 40);
+		panel.add(TotalVenda);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(VendaVIEW.class.getResource("/imagens/cifrão.png")));
+		lblNewLabel_4.setBounds(119, 245, 64, 50);
+		panel.add(lblNewLabel_4);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 68, 309, 166);
+		panel.add(scrollPane_2);
+		
 		TabelaCliente = new JTable();
+		scrollPane_2.setViewportView(TabelaCliente);
 		TabelaCliente.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -74,53 +97,43 @@ public class VendaVIEW extends JInternalFrame {
 		TabelaCliente.getColumnModel().getColumn(0).setPreferredWidth(68);
 		TabelaCliente.getColumnModel().getColumn(0).setMinWidth(19);
 		TabelaCliente.getColumnModel().getColumn(0).setMaxWidth(100);
-		TabelaCliente.setBounds(10, 55, 292, 154);
-		panel.add(TabelaCliente);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(106, 220, 89, 62);
-		panel.add(panel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Total da venda:");
-		lblNewLabel_3.setBounds(10, 294, 81, 39);
-		panel.add(lblNewLabel_3);
-		
-		JLabel TotalVenda = new JLabel("0.00");
-		TotalVenda.setBounds(106, 293, 81, 40);
-		panel.add(TotalVenda);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(423, 24, 258, 358);
+		panel_1.setBackground(new Color(249, 235, 229));
+		panel_1.setBounds(416, 96, 296, 408);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_5 = new JLabel("Produto");
-		lblNewLabel_5.setBounds(10, 11, 46, 14);
+		lblNewLabel_5.setBounds(10, 47, 46, 14);
 		panel_1.add(lblNewLabel_5);
 		
 		PesqProduto = new JTextField();
-		PesqProduto.setBounds(54, 8, 138, 20);
+		PesqProduto.setBounds(54, 44, 138, 20);
 		panel_1.add(PesqProduto);
 		PesqProduto.setColumns(10);
 		
-		JButton btnPesqProduto = new JButton("New button");
-		btnPesqProduto.setBounds(202, 7, 46, 23);
+		JButton btnPesqProduto = new JButton("Pesquisar");
+		btnPesqProduto.setBackground(new Color(249, 235, 229));
+		btnPesqProduto.setBounds(197, 43, 89, 23);
 		panel_1.add(btnPesqProduto);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.setBackground(new Color(249, 235, 229));
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnAdicionar.setBounds(20, 190, 89, 23);
+		btnAdicionar.setBounds(10, 224, 89, 23);
 		panel_1.add(btnAdicionar);
 		
 		JButton btnRetirar = new JButton("Retirar");
-		btnRetirar.setBounds(146, 190, 89, 23);
+		btnRetirar.setBackground(new Color(249, 235, 229));
+		btnRetirar.setBounds(197, 224, 89, 23);
 		panel_1.add(btnRetirar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 36, 228, 128);
+		scrollPane.setBounds(10, 77, 276, 128);
 		panel_1.add(scrollPane);
 		
 		TabelaProduto = new JTable();
@@ -134,7 +147,7 @@ public class VendaVIEW extends JInternalFrame {
 		));
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 236, 238, 111);
+		scrollPane_1.setBounds(10, 269, 276, 128);
 		panel_1.add(scrollPane_1);
 		
 		TabelaVenda = new JTable();
@@ -148,28 +161,40 @@ public class VendaVIEW extends JInternalFrame {
 		));
 		
 		JLabel lblNewLabel = new JLabel("Dados");
-		lblNewLabel.setBounds(152, 11, 46, 14);
+		lblNewLabel.setBounds(162, 71, 46, 14);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Produtos");
-		lblNewLabel_1.setBounds(541, -1, 46, 14);
+		lblNewLabel_1.setBounds(543, 71, 46, 14);
 		getContentPane().add(lblNewLabel_1);
 		
-		JButton btnNovo = new JButton("Novo");
-		btnNovo.setBounds(79, 408, 89, 23);
-		getContentPane().add(btnNovo);
-		
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(217, 408, 89, 23);
+		JButton btnSalvar = new JButton("");
+		btnSalvar.setBackground(new Color(249, 235, 229));
+		btnSalvar.setIcon(new ImageIcon(VendaVIEW.class.getResource("/imagens/Salvar.png")));
+		btnSalvar.setBounds(29, 459, 53, 45);
 		getContentPane().add(btnSalvar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(339, 408, 89, 23);
+		JButton btnCancelar = new JButton("");
+		btnCancelar.setBackground(new Color(249, 235, 229));
+		btnCancelar.setIcon(new ImageIcon(VendaVIEW.class.getResource("/imagens/fechar.png")));
+		btnCancelar.setBounds(172, 462, 53, 42);
 		getContentPane().add(btnCancelar);
 		
-		JButton btnSair = new JButton("Sair");
-		btnSair.setBounds(464, 408, 89, 23);
+		JButton btnSair = new JButton("");
+		btnSair.setBackground(new Color(249, 235, 229));
+		btnSair.setIcon(new ImageIcon(VendaVIEW.class.getResource("/imagens/logout_16dp_F_FILL0_wght400_GRAD0_opsz20.png")));
+		btnSair.setBounds(305, 459, 53, 45);
 		getContentPane().add(btnSair);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(VendaVIEW.class.getResource("/imagens/vendas.png")));
+		lblNewLabel_6.setBounds(10, 11, 72, 53);
+		getContentPane().add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setIcon(new ImageIcon(VendaVIEW.class.getResource("/imagens/imagemLogo-removebg-preview.png")));
+		lblNewLabel_7.setBounds(305, 2, 159, 83);
+		getContentPane().add(lblNewLabel_7);
 
 	}
 }

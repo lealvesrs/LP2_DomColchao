@@ -25,6 +25,8 @@ import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class VendedorVIEW extends JInternalFrame {
 
@@ -158,15 +160,17 @@ public class VendedorVIEW extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public VendedorVIEW() {
+		getContentPane().setBackground(new Color(249, 235, 223));
 		PessoaController pessoaController = new PessoaController();
 		
-		setBounds(100, 100, 747, 369);
+		setBounds(100, 100, 765, 486);
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 22));
 		getContentPane().setLayout(null);
 		setTitle("Cadastro de Vendedor");
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(54, 48, 349, 233);
+		panel.setBackground(new Color(249, 235, 229));
+		panel.setBounds(44, 138, 349, 233);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -252,10 +256,12 @@ public class VendedorVIEW extends JInternalFrame {
 		remuneracao.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Vendedor");
-		lblNewLabel.setBounds(200, 23, 46, 14);
+		lblNewLabel.setBounds(200, 113, 46, 14);
 		getContentPane().add(lblNewLabel);
 		
-		btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("");
+		btnSalvar.setBackground(new Color(249, 235, 223));
+		btnSalvar.setIcon(new ImageIcon(VendedorVIEW.class.getResource("/imagens/Salvar.png")));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(verificaPreenchimento()) {
@@ -303,10 +309,12 @@ public class VendedorVIEW extends JInternalFrame {
 				
 			}
 		});
-		btnSalvar.setBounds(22, 305, 89, 23);
+		btnSalvar.setBounds(46, 382, 58, 50);
 		getContentPane().add(btnSalvar);
 		
-		btnEditar = new JButton("Editar");
+		btnEditar = new JButton("");
+		btnEditar.setBackground(new Color(249, 235, 223));
+		btnEditar.setIcon(new ImageIcon(VendedorVIEW.class.getResource("/imagens/editar.png")));
 		btnEditar.setEnabled(false);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -315,10 +323,12 @@ public class VendedorVIEW extends JInternalFrame {
 				habilitaCampos(true);
 			}
 		});
-		btnEditar.setBounds(123, 305, 89, 23);
+		btnEditar.setBounds(114, 382, 58, 50);
 		getContentPane().add(btnEditar);
 		
-		btnExcluir = new JButton("Excluir");
+		btnExcluir = new JButton("");
+		btnExcluir.setBackground(new Color(249, 235, 223));
+		btnExcluir.setIcon(new ImageIcon(VendedorVIEW.class.getResource("/imagens/delete.png")));
 		btnExcluir.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		int resposta = JOptionPane.showConfirmDialog(
@@ -341,33 +351,37 @@ public class VendedorVIEW extends JInternalFrame {
 		 	}
 		 });
 		btnExcluir.setEnabled(false);
-		btnExcluir.setBounds(222, 305, 89, 23);
+		btnExcluir.setBounds(188, 382, 58, 50);
 		getContentPane().add(btnExcluir);
 		
-		JButton btnSair = new JButton("Sair");
+		JButton btnSair = new JButton("");
+		btnSair.setBackground(new Color(249, 235, 223));
+		btnSair.setIcon(new ImageIcon(VendedorVIEW.class.getResource("/imagens/logout_16dp_F_FILL0_wght400_GRAD0_opsz20.png")));
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnSair.setBounds(420, 305, 89, 23);
+		btnSair.setBounds(335, 382, 58, 50);
 		getContentPane().add(btnSair);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(444, 48, 235, 233);
+		panel_1.setBackground(new Color(249, 235, 229));
+		panel_1.setBounds(403, 138, 297, 294);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_11 = new JLabel("Nome:");
-		lblNewLabel_11.setBounds(10, 11, 31, 14);
+		lblNewLabel_11.setBounds(10, 32, 31, 14);
 		panel_1.add(lblNewLabel_11);
 		
 		pesqNome = new JTextField();
-		pesqNome.setBounds(40, 8, 131, 20);
+		pesqNome.setBounds(40, 29, 131, 20);
 		panel_1.add(pesqNome);
 		pesqNome.setColumns(10);
 		
-		JButton btnPesq = new JButton("Lupa");
+		JButton btnPesq = new JButton("Pesquisar");
+		btnPesq.setBackground(new Color(249, 235, 223));
 		btnPesq.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 List<Vendedor> vendedores;
@@ -378,11 +392,11 @@ public class VendedorVIEW extends JInternalFrame {
 				
 			}
 		});
-		btnPesq.setBounds(181, 7, 44, 23);
+		btnPesq.setBounds(183, 28, 91, 23);
 		panel_1.add(btnPesq);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 57, 189, 150);
+		scrollPane.setBounds(10, 57, 264, 226);
 		panel_1.add(scrollPane);
 		
 		TabelaVendedor = new JTable();
@@ -417,18 +431,30 @@ public class VendedorVIEW extends JInternalFrame {
 		));
 		
 		JLabel lblNewLabel_10 = new JLabel("Pesquisar");
-		lblNewLabel_10.setBounds(537, 23, 46, 14);
+		lblNewLabel_10.setBounds(541, 113, 46, 14);
 		getContentPane().add(lblNewLabel_10);
 		
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("");
+		btnCancelar.setBackground(new Color(249, 235, 223));
+		btnCancelar.setIcon(new ImageIcon(VendedorVIEW.class.getResource("/imagens/fechar.png")));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpaCampos();
 				limpaTabela();
 			}
 		});
-		btnCancelar.setBounds(321, 305, 89, 23);
+		btnCancelar.setBounds(267, 382, 58, 50);
 		getContentPane().add(btnCancelar);
+		
+		JLabel lblNewLabel_12 = new JLabel("");
+		lblNewLabel_12.setIcon(new ImageIcon(VendedorVIEW.class.getResource("/imagens/vendedor.png")));
+		lblNewLabel_12.setBounds(10, 11, 66, 50);
+		getContentPane().add(lblNewLabel_12);
+		
+		JLabel lblNewLabel_13 = new JLabel("");
+		lblNewLabel_13.setIcon(new ImageIcon(VendedorVIEW.class.getResource("/imagens/imagemLogo-removebg-preview.png")));
+		lblNewLabel_13.setBounds(321, 11, 165, 95);
+		getContentPane().add(lblNewLabel_13);
 
 	}
 }

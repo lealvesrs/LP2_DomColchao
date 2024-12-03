@@ -37,3 +37,14 @@ CREATE TABLE IF NOT EXISTS public.vendedor
     data_nasc date NOT NULL,
     CONSTRAINT vendedor_pkey PRIMARY KEY (cpf)
 )
+
+CREATE TABLE IF NOT EXISTS public.produto
+(
+    nomeProd character varying COLLATE pg_catalog."default" NOT NULL,
+    idProd integer NOT NULL,
+    tamanhoProd character varying COLLATE pg_catalog."default" NOT NULL,
+    densidadeProd character varying COLLATE pg_catalog."default" NOT NULL,
+    materialProd character varying COLLATE pg_catalog."default" NOT NULL,
+    precoProd double precision NOT NULL,
+    CONSTRAINT produto_pkey PRIMARY KEY (idProd)
+)

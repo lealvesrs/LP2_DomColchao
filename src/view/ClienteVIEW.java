@@ -22,6 +22,8 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class ClienteVIEW extends JInternalFrame {
 
@@ -142,20 +144,23 @@ public class ClienteVIEW extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ClienteVIEW() {
+		getContentPane().setBackground(new Color(249, 235, 223));
+		getContentPane().setForeground(new Color(0, 0, 0));
 
 		PessoaController pessoaController = new PessoaController();
 		
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 22));
-		setBounds(100, 100, 749, 329);
+		setBounds(100, 100, 751, 385);
 		getContentPane().setLayout(null);
 		setTitle("Cadastro de Cliente");
 		
 		JLabel lblNewLabel = new JLabel("Cliente");
-		lblNewLabel.setBounds(221, 11, 44, 26);
+		lblNewLabel.setBounds(182, 82, 44, 26);
 		getContentPane().add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(52, 48, 367, 148);
+		panel.setBackground(new Color(249, 235, 229));
+		panel.setBounds(39, 119, 367, 148);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -213,7 +218,9 @@ public class ClienteVIEW extends JInternalFrame {
 		panel.add(numero);
 		numero.setColumns(10);
 		
-		 btnSalvar = new JButton("Salvar");
+		 btnSalvar = new JButton("");
+		 btnSalvar.setBackground(new Color(249, 235, 223));
+		 btnSalvar.setIcon(new ImageIcon(ClienteVIEW.class.getResource("/imagens/Salvar.png")));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(verificaPreenchimento()) {
@@ -247,10 +254,12 @@ public class ClienteVIEW extends JInternalFrame {
 				
 			}
 		});
-		btnSalvar.setBounds(47, 226, 89, 23);
+		btnSalvar.setBounds(39, 296, 56, 48);
 		getContentPane().add(btnSalvar);
 		
-		btnEditar = new JButton("Editar");
+		btnEditar = new JButton("");
+		btnEditar.setBackground(new Color(249, 235, 223));
+		btnEditar.setIcon(new ImageIcon(ClienteVIEW.class.getResource("/imagens/editar.png")));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEditar.setEnabled(false);
@@ -259,58 +268,50 @@ public class ClienteVIEW extends JInternalFrame {
 			}
 		});
 		btnEditar.setEnabled(false);
-		btnEditar.setBounds(146, 226, 89, 23);
+		btnEditar.setBounds(115, 296, 56, 48);
 		getContentPane().add(btnEditar);
 		
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("");
+		btnCancelar.setBackground(new Color(249, 235, 223));
+		btnCancelar.setIcon(new ImageIcon(ClienteVIEW.class.getResource("/imagens/fechar.png")));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpaCampos();
 				limpaTabela();
 			}
 		});
-		btnCancelar.setBounds(344, 226, 89, 23);
+		btnCancelar.setBounds(268, 296, 56, 48);
 		getContentPane().add(btnCancelar);
 		
-		JButton btnSair = new JButton("Sair");
+		JButton btnSair = new JButton("");
+		btnSair.setBackground(new Color(249, 235, 223));
+		btnSair.setIcon(new ImageIcon(ClienteVIEW.class.getResource("/imagens/logout_16dp_F_FILL0_wght400_GRAD0_opsz20.png")));
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnSair.setBounds(443, 226, 89, 23);
+		btnSair.setBounds(351, 296, 56, 48);
 		getContentPane().add(btnSair);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(473, 48, 234, 148);
+		panel_1.setBackground(new Color(249, 235, 229));
+		panel_1.setBounds(416, 119, 288, 225);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		pesqNome = new JTextField();
-		pesqNome.setBounds(39, 11, 115, 20);
+		pesqNome.setBounds(49, 22, 115, 20);
 		panel_1.add(pesqNome);
 		pesqNome.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Nome:");
-		lblNewLabel_7.setBounds(8, 14, 31, 14);
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_7.setBounds(10, 25, 31, 14);
 		panel_1.add(lblNewLabel_7);
 		
-		JButton btnPesq = new JButton("(lupa)");
-		btnPesq.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 List<Cliente> clientes;
-				
-				if(!pesqNome.getText().isEmpty()) clientes = pessoaController.pesquisarPorNome(pesqNome.getText());
-				else clientes = pessoaController.listarClientes();
-				preencheTabela(clientes);
-				
-			}
-		});
-		btnPesq.setBounds(164, 10, 31, 23);
-		panel_1.add(btnPesq);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(18, 42, 193, 95);
+		scrollPane.setBounds(10, 70, 268, 144);
 		panel_1.add(scrollPane);
 		
 		TabelaCliente = new JTable();
@@ -347,11 +348,29 @@ public class ClienteVIEW extends JInternalFrame {
 			}
 		));
 		
+		JButton btnPesq = new JButton("Pesquisar");
+		btnPesq.setBackground(new Color(249, 235, 223));
+		btnPesq.setBounds(174, 18, 104, 28);
+		panel_1.add(btnPesq);
+		btnPesq.setIcon(null);
+		btnPesq.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 List<Cliente> clientes;
+				
+				if(!pesqNome.getText().isEmpty()) clientes = pessoaController.pesquisarPorNome(pesqNome.getText());
+				else clientes = pessoaController.listarClientes();
+				preencheTabela(clientes);
+				
+			}
+		});
+		
 		JLabel lblNewLabel_6 = new JLabel("Pesquisar");
-		lblNewLabel_6.setBounds(553, 17, 46, 14);
+		lblNewLabel_6.setBounds(542, 94, 78, 14);
 		getContentPane().add(lblNewLabel_6);
 		
-		 btnExcluir = new JButton("Excluir");
+		 btnExcluir = new JButton("");
+		 btnExcluir.setBackground(new Color(249, 235, 223));
+		 btnExcluir.setIcon(new ImageIcon(ClienteVIEW.class.getResource("/imagens/delete.png")));
 		 btnExcluir.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		int resposta = JOptionPane.showConfirmDialog(
@@ -374,8 +393,18 @@ public class ClienteVIEW extends JInternalFrame {
 		 	}
 		 });
 		btnExcluir.setEnabled(false);
-		btnExcluir.setBounds(245, 226, 89, 23);
+		btnExcluir.setBounds(194, 296, 56, 48);
 		getContentPane().add(btnExcluir);
+		
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setIcon(new ImageIcon(ClienteVIEW.class.getResource("/imagens/imagemLogo-removebg-preview.png")));
+		lblNewLabel_8.setBounds(339, 11, 154, 97);
+		getContentPane().add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("New label");
+		lblNewLabel_9.setIcon(new ImageIcon(ClienteVIEW.class.getResource("/imagens/cliente.png")));
+		lblNewLabel_9.setBounds(10, 11, 67, 56);
+		getContentPane().add(lblNewLabel_9);
 		
 	}
 }
