@@ -83,7 +83,7 @@ contentPane.add(fundoDesktopPane);
 	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 745, 444);
+		setBounds(100, 100, 638, 430);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setForeground(new Color(249, 235, 223));
@@ -142,6 +142,11 @@ contentPane.add(fundoDesktopPane);
 		desktopPane.setBounds(0, 0, 729, 383);
 	    contentPane.add(desktopPane);
 		desktopPane.setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(MenuVIEW.class.getResource("/imagens/imagemFundo.jpg")));
+		label.setBounds(0, 0, 729, 372);
+		desktopPane.add(label);
 	}
 	
 	private void abrirClienteVIEW() {
